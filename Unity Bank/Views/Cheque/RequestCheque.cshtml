@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Request Cheque Book";
+}
+
+<h2>Request Cheque Book / Stop Payment</h2>
+
+<form asp-action="RequestCheque" method="post">
+    <div class="form-group">
+        <label>Account</label>
+        <select name="AccountId" class="form-control">
+            @foreach (var account in ViewBag.Accounts)
+            {
+                <option value="@account.AccountId">@account.AccountNumber</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Request Type</label>
+        <select name="RequestType" class="form-control">
+            <option value="New Cheque Book">New Cheque Book</option>
+            <option value="Stop Payment">Stop Payment</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Request</button>
+</form>

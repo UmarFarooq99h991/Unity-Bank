@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Transfer Funds";
+}
+
+<h2>Transfer Funds</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<form asp-action="TransferFunds" method="post">
+    <div class="mb-3">
+        <label for="senderAccountId" class="form-label">Sender Account</label>
+        <select class="form-control" name="senderAccountId" required>
+            <option value="">Select Account</option>
+            @foreach (var account in ViewBag.Accounts)
+            {
+                <option value="@account.AccountId">@account.AccountNumber - Balance: @account.Balance</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="receiverAccountId" class="form-label">Receiver Account</label>
+        <select class="form-control" name="receiverAccountId" required>
+            <option value="">Select Account</option>
+            @foreach (var account in ViewBag.Accounts)
+            {
+                <option value="@account.AccountId">@account.AccountNumber</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" class="form-control" name="amount" step="0.01" min="1" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Transfer</button>
+</form>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Unity_Bank.Models.Transaction>
+
+<h2>Transaction History</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>From Account</th>
+            <th>To Account</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transaction in Model)
+        {
+            <tr>
+                <td>@transaction.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@transaction.TransactionType</td>
+                <td>@transaction.Amount</td>
+                <td>@transaction.BankAccount.AccountNumber</td>
+                <td>@(transaction.ToAccount != null ? transaction.ToAccount.AccountNumber : "-")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button onclick="window.print()" class="btn btn-primary">Print Statement</button>
