@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/HJadpa4UGn4OAp/sMxOCEe5hSZIsT1NrhjsST2JIbo=",
+  "Hash": "MvPN+qSffFmhCuHNHeTXf8sY2c5rMDOaCoHZrIsBYdE=",
   "Source": "Unity Bank",
   "BasePath": "_content/Unity Bank",
   "Mode": "Default",
@@ -2577,6 +2577,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\title_icon.png",
+      "SourceId": "Unity Bank",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\",
+      "BasePath": "_content/Unity Bank",
+      "RelativePath": "title_icon#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "afudmgmnlu",
+      "Integrity": "uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\title_icon.png"
+    },
+    {
+      "Identity": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\Unity_Bank_Logo.png",
+      "SourceId": "Unity Bank",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\",
+      "BasePath": "_content/Unity Bank",
+      "RelativePath": "Unity_Bank_Logo#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "poterfx8ik",
+      "Integrity": "N8vcSBnSYxmcZJWf5aG7MF1nZA/t+3KP8ZZinaNLulM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Unity_Bank_Logo.png"
     }
   ],
   "Endpoints": [
@@ -9721,6 +9763,88 @@
       ]
     },
     {
+      "Route": "title_icon.afudmgmnlu.png",
+      "AssetFile": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\title_icon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "447489"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 05:40:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "afudmgmnlu"
+        },
+        {
+          "Name": "label",
+          "Value": "title_icon.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0="
+        }
+      ]
+    },
+    {
+      "Route": "title_icon.png",
+      "AssetFile": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\title_icon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "447489"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 05:40:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0="
+        }
+      ]
+    },
+    {
       "Route": "Unity Bank.bundle.scp.css",
       "AssetFile": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Unity Bank.bundle.scp.css",
       "Selectors": [],
@@ -9881,6 +10005,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-AiiOG0AgScSkCzUHQnCo68S3k2Q3s1jDA6+HxO9rGlM="
+        }
+      ]
+    },
+    {
+      "Route": "Unity_Bank_Logo.png",
+      "AssetFile": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\Unity_Bank_Logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "530481"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N8vcSBnSYxmcZJWf5aG7MF1nZA/t+3KP8ZZinaNLulM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 05:37:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-N8vcSBnSYxmcZJWf5aG7MF1nZA/t+3KP8ZZinaNLulM="
+        }
+      ]
+    },
+    {
+      "Route": "Unity_Bank_Logo.poterfx8ik.png",
+      "AssetFile": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\Unity_Bank_Logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "530481"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N8vcSBnSYxmcZJWf5aG7MF1nZA/t+3KP8ZZinaNLulM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 05:37:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "poterfx8ik"
+        },
+        {
+          "Name": "label",
+          "Value": "Unity_Bank_Logo.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-N8vcSBnSYxmcZJWf5aG7MF1nZA/t+3KP8ZZinaNLulM="
         }
       ]
     }

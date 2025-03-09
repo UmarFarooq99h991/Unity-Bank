@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Unity Bank")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+210f3c4b4508220d0013bda67da0e17972deae97")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52e97a5d3acb2d47f36137b49479080a96e5c06a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Unity Bank")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Unity Bank")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

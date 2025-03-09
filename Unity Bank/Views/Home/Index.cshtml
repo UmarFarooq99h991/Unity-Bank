@@ -1,8 +1,39 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to Unity Bank";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5 text-center">
+    <div class="jumbotron bg-primary text-white p-5 rounded shadow">
+        <h1 class="display-4 fw-bold">Welcome to Unity Bank</h1>
+        <p class="lead">Your trusted partner for secure and seamless banking.</p>
+        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-light btn-lg">Get Started</a>
+
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="card shadow p-4">
+                <h3><i class="bi bi-lock-fill text-primary"></i> Secure Banking</h3>
+                <p>We ensure top-tier security with encrypted transactions and fraud protection.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-4">
+                <h3><i class="bi bi-cash-stack text-success"></i> Easy Transfers</h3>
+                <p>Transfer funds effortlessly with our reliable and fast online banking system.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-4">
+                <h3><i class="bi bi-phone text-warning"></i> 24/7 Support</h3>
+                <p>Our dedicated support team is always available to assist you.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 text-center">
+    <p class="mt-3">Learn more about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

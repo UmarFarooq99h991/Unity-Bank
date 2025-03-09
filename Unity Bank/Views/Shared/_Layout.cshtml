@@ -25,7 +25,7 @@
 @*                         <li class="nav-item"> *@
 @*                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
 @*                         </li> *@
-                  
+
 @*                         @if (User.IsInRole("User")) // Only show to users *@
 @*                         { *@
 @*                             <li class="nav-item"> *@
@@ -116,63 +116,64 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Unity_Bank</title>
+    <link rel="icon" type="image/png" href="~/title_icon.png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Unity_Bank.styles.css" asp-append-version="true" />
     <style>
         .navbar-brand {
-            font-size: 24px;
-            font-weight: bold;
+        font-size: 24px;
+        font-weight: bold;
         }
 
         .navbar-nav .nav-link {
-            font-size: 18px;
+        font-size: 18px;
         }
 
         .sidebar {
-            width: 280px;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: linear-gradient(135deg, #1e1e2f, #343a40);
-            padding-top: 20px;
-            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
-            display: none;
-            transition: all 0.3s ease-in-out;
+        width: 280px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: linear-gradient(135deg, #1e1e2f, #343a40);
+        padding-top: 20px;
+        box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+        display: none;
+        transition: all 0.3s ease-in-out;
         }
 
-            .sidebar a {
-                color: white;
-                padding: 12px 20px;
-                display: flex;
-                align-items: center;
-                font-size: 18px;
-                transition: background 0.3s, transform 0.2s;
-                border-radius: 8px;
-                margin: 5px 15px;
-            }
+        .sidebar a {
+        color: white;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        transition: background 0.3s, transform 0.2s;
+        border-radius: 8px;
+        margin: 5px 15px;
+        }
 
-                .sidebar a:hover {
-                    background: rgba(255, 255, 255, 0.1);
-                    transform: translateX(5px);
-                }
+        .sidebar a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+        }
 
-            .sidebar .nav-link.text-danger:hover {
-                background: rgba(255, 0, 0, 0.2);
-            }
+        .sidebar .nav-link.text-danger:hover {
+        background: rgba(255, 0, 0, 0.2);
+        }
 
         .content {
-            margin-left: 0;
-            transition: margin-left 0.3s;
+        margin-left: 0;
+        transition: margin-left 0.3s;
         }
 
         .show-sidebar .content {
-            margin-left: 280px;
+        margin-left: 280px;
         }
 
         .show-sidebar .sidebar {
-            display: block;
+        display: block;
         }
     </style>
 </head>
@@ -183,16 +184,26 @@
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Unity_Bank</a>
             <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
             <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            <a class="nav-link" asp-controller="BankAccount" asp-action="Index">My Accounts</a>
-            <a class="nav-link" asp-controller="Transaction" asp-action="TransferFunds">Transfer Funds</a>
-            <a class="nav-link" asp-controller="Transaction" asp-action="History">Transaction History</a>
+            @if (User.IsInRole("User"))
+            {
             <a class="nav-link" asp-controller="Cheque" asp-action="RequestCheque">Request Cheque Book</a>
+            <a class="nav-link" asp-controller="Transaction" asp-action="TransferFunds">Transfer Funds</a>
+            <a class="nav-link" asp-controller="BankAccount" asp-action="Index">My Accounts</a>
+            }
+            <a class="nav-link" asp-controller="Transaction" asp-action="History">Transaction History</a>
             <a class="nav-link" asp-controller="Profile" asp-action="Index">Profile</a>
             @if (User.IsInRole("Admin"))
             {
-                <a class="nav-link text-danger" asp-controller="Admin" asp-action="Dashboard">Admin Dashboard</a>
-                <a class="nav-link text-danger" asp-controller="Admin" asp-action="Users">Manage Users</a>
-                <a class="nav-link text-danger" asp-controller="Cheque" asp-action="AdminChequeRequests">Manage Cheque Requests</a>
+                                             <li class="nav-item dropdown"> 
+                                                 <a class="nav-link dropdown-toggle text-danger" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown">
+                                                     <b>Admin Panel</b> 
+                                                 </a> 
+                                                 <ul class="dropdown-menu"> 
+                                                     <li><a class="dropdown-item text-secondary" asp-controller="Admin" asp-action="Dashboard">Dashboard</a></li>
+                        <li><a class="dropdown-item text-secondary" asp-controller="Admin" asp-action="Users">Manage Users</a></li>
+                        <li><a class="dropdown-item text-secondary" asp-controller="Admin" asp-action="Transactions">All Transactions</a></li>
+                        <li><a class="dropdown-item text-secondary" asp-controller="Cheque" asp-action="AdminChequeRequests">Manage Cheque Requests</a></li>
+                                                     <li><a class="dropdown-item text-secondary" asp-controller="Admin" asp-action="ApproveTransfers">Approve Transfers</a></li> </ul>  </li> 
             }
             <form asp-area="Identity" asp-page="/Account/Logout" method="post">
                 <button type="submit" class="btn btn-danger w-100">Logout</button>
@@ -204,7 +215,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="/logo.png" alt="Logo" width="40">
+                    <img src="~/title_icon.png" alt="Logo" width="40">
                 </a>
                 <span class="navbar-text mx-auto" style="font-size: 24px; font-weight: bold;">Unity Bank</span>
                 <div class="d-flex">
@@ -221,8 +232,8 @@
             </div>
         </nav>
     </header>
-    <div class="container content">
-        <main role="main" class="pb-3">
+    <div class="container content" style="width: auto;">
+        <main role="main" class="pb-3" >
             @RenderBody()
         </main>
     </div>

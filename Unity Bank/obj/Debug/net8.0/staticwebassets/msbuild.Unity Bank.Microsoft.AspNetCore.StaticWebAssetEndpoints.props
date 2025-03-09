@@ -720,6 +720,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1117"},{"Name":"Content-Type","Value":"text/plain"},{"Name":"ETag","Value":"\u0022hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=\u0022"},{"Name":"Last-Modified","Value":"Tue, 04 Mar 2025 17:26:16 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Unity Bank/title_icon.afudmgmnlu.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\title_icon.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"afudmgmnlu"},{"Name":"integrity","Value":"sha256-uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0="},{"Name":"label","Value":"_content/Unity Bank/title_icon.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"447489"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Mar 2025 05:40:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Unity Bank/title_icon.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\title_icon.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"447489"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Mar 2025 05:40:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Unity Bank/Unity Bank.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Unity Bank.eo1ijfnoec.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
@@ -731,6 +743,18 @@
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"eo1ijfnoec"},{"Name":"integrity","Value":"sha256-AiiOG0AgScSkCzUHQnCo68S3k2Q3s1jDA6\u002BHxO9rGlM="},{"Name":"label","Value":"_content/Unity Bank/Unity Bank.bundle.scp.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1128"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022AiiOG0AgScSkCzUHQnCo68S3k2Q3s1jDA6\u002BHxO9rGlM=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 17:32:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Unity Bank/Unity_Bank_Logo.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Unity_Bank_Logo.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-N8vcSBnSYxmcZJWf5aG7MF1nZA/t\u002B3KP8ZZinaNLulM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"530481"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022N8vcSBnSYxmcZJWf5aG7MF1nZA/t\u002B3KP8ZZinaNLulM=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Mar 2025 05:37:44 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Unity Bank/Unity_Bank_Logo.poterfx8ik.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Unity_Bank_Logo.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"poterfx8ik"},{"Name":"integrity","Value":"sha256-N8vcSBnSYxmcZJWf5aG7MF1nZA/t\u002B3KP8ZZinaNLulM="},{"Name":"label","Value":"_content/Unity Bank/Unity_Bank_Logo.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"530481"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022N8vcSBnSYxmcZJWf5aG7MF1nZA/t\u002B3KP8ZZinaNLulM=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Mar 2025 05:37:44 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

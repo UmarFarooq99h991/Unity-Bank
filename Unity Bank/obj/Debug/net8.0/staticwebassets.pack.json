@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Unity Bank.eo1ijfnoec.bundle.scp.css"
     },
     {
+      "Id": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\Unity_Bank_Logo.png",
+      "PackagePath": "staticwebassets\\Unity_Bank_Logo.png"
+    },
+    {
       "Id": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -243,6 +247,10 @@
     {
       "Id": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\wwwroot\\title_icon.png",
+      "PackagePath": "staticwebassets\\title_icon.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Unity Bank.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

@@ -2305,6 +2305,88 @@
       ]
     },
     {
+      "Route": "Unity_Bank_Logo.png",
+      "AssetFile": "Unity_Bank_Logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "530481"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N8vcSBnSYxmcZJWf5aG7MF1nZA/t+3KP8ZZinaNLulM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 05:37:44 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-N8vcSBnSYxmcZJWf5aG7MF1nZA/t+3KP8ZZinaNLulM="
+        }
+      ]
+    },
+    {
+      "Route": "Unity_Bank_Logo.poterfx8ik.png",
+      "AssetFile": "Unity_Bank_Logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "530481"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N8vcSBnSYxmcZJWf5aG7MF1nZA/t+3KP8ZZinaNLulM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 05:37:44 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "poterfx8ik"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-N8vcSBnSYxmcZJWf5aG7MF1nZA/t+3KP8ZZinaNLulM="
+        },
+        {
+          "Name": "label",
+          "Value": "Unity_Bank_Logo.png"
+        }
+      ]
+    },
+    {
       "Route": "css/site.c2tiyv64ts.css",
       "AssetFile": "css/site.css",
       "Selectors": [],
@@ -7221,6 +7303,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I="
+        }
+      ]
+    },
+    {
+      "Route": "title_icon.afudmgmnlu.png",
+      "AssetFile": "title_icon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "447489"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 05:40:13 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "afudmgmnlu"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0="
+        },
+        {
+          "Name": "label",
+          "Value": "title_icon.png"
+        }
+      ]
+    },
+    {
+      "Route": "title_icon.png",
+      "AssetFile": "title_icon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "447489"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 05:40:13 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uu4HELUEgoy4wz9Pq13ZCNNgtLy65ENh4MiAjSSEJz0="
         }
       ]
     }
