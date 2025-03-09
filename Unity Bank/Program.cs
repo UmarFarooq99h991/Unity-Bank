@@ -30,7 +30,53 @@ builder.Services.AddTransient<IEmailSender, EmailSender>(); // ? Use fake email 
 
 builder.Services.AddRazorPages();
 var app = builder.Build();
+async Task CreateRolesAndAdminUser(IServiceProvider serviceProvider)
+{
+    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
+    // Define roles
+    string[] roleNames = { "Admin", "User" };
+    IdentityResult roleResult;
+
+    foreach (var roleName in roleNames)
+    {
+        var roleExist = await roleManager.RoleExistsAsync(roleName);
+        if (!roleExist)
+        {
+            roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
+        }
+    }
+
+    // Create default Admin user
+    var adminUser = await userManager.FindByEmailAsync("admin@bank.com");
+    if (adminUser == null)
+    {
+        var newAdmin = new ApplicationUser
+        {
+            UserName = "admin@bank.com",
+            Email = "admin@bank.com",
+            Role = "Admin",
+            EmailConfirmed = true,
+            TransactionPassword = "Default@123"
+        };
+
+        string adminPassword = "Admin@123"; // Change this for production
+        var createAdmin = await userManager.CreateAsync(newAdmin, adminPassword);
+
+        if (createAdmin.Succeeded)
+        {
+            await userManager.AddToRoleAsync(newAdmin, "Admin");
+        }
+    }
+}
+
+// Call the function on startup
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await CreateRolesAndAdminUser(services);
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

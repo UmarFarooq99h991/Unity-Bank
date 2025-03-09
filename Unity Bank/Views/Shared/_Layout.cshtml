@@ -1,4 +1,116 @@
-﻿<!DOCTYPE html>
+﻿@* <!DOCTYPE html> *@
+@* <html lang="en"> *@
+@* <head> *@
+@*     <meta charset="utf-8" /> *@
+@*     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> *@
+@*     <title>@ViewData["Title"] - Unity_Bank</title> *@
+@*     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+@*     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+@*     <link rel="stylesheet" href="~/Unity_Bank.styles.css" asp-append-version="true" /> *@
+@* </head> *@
+@* <body> *@
+@*     <header> *@
+@*         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"> *@
+@*             <div class="container-fluid"> *@
+@*                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Unity_Bank</a> *@
+@*                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" *@
+@*                         aria-expanded="false" aria-label="Toggle navigation"> *@
+@*                     <span class="navbar-toggler-icon"></span> *@
+@*                 </button> *@
+@*                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between"> *@
+@*                     <ul class="navbar-nav flex-grow-1"> *@
+@*                         <li class="nav-item"> *@
+@*                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a> *@
+@*                         </li> *@
+@*                         <li class="nav-item"> *@
+@*                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
+@*                         </li> *@
+                  
+@*                         @if (User.IsInRole("User")) // Only show to users *@
+@*                         { *@
+@*                             <li class="nav-item"> *@
+@*                                 <a class="nav-link" asp-controller="Transaction" asp-action="TransferFunds">Transfer Funds</a> *@
+@*                             </li> *@
+@*                         } *@
+
+@*                             @if (User.Identity.IsAuthenticated) *@
+@*                             { *@
+@*                             <li><a asp-controller="Cheque" asp-action="MyRequests">My Cheque Requests</a></li> *@
+
+@*                                 <li class="nav-item"> *@
+@*                                     <a class="nav-link" asp-controller="BankAccount" asp-action="Index">My Accounts</a> *@
+@*                                 </li> *@
+@*                                 <li class="nav-item"> *@
+@*                                 <a class="nav-link" asp-controller="Transaction" asp-action="TransferFunds">Transfer Funds</a> *@
+@*                                 </li> *@
+@*                             <li class="nav-item"> *@
+@*                                 <a class="nav-link" asp-controller="Transaction" asp-action="History">Transaction History</a> *@
+@*                             </li> *@
+@*                             <li class="nav-item"> *@
+@*                                 <a class="nav-link" asp-controller="Cheque" asp-action="RequestCheque">Request Cheque Book</a> *@
+@*                             </li> *@
+
+@*                             <li class="nav-item"> *@
+@*                                 <a class="nav-link" asp-controller="Profile" asp-action="Index">Profile</a> *@
+@*                             </li> *@
+
+@*                             } *@
+@*                             else *@
+@*                             { *@
+@*                             <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li> *@
+@*                             <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a></li> *@
+
+@*                             } *@
+
+@*                         @if (User.Identity.IsAuthenticated) *@
+@*                         { *@
+@*                             <li class="nav-item"> *@
+@*                                 <form asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm"> *@
+@*                                     <button type="submit" class="btn btn-danger">Logout</button> *@
+@*                                 </form> *@
+
+@*                             </li> *@
+@*                         } *@
+@*                         @if (User.IsInRole("Admin")) *@
+@*                         { *@
+@*                             <li class="nav-item dropdown"> *@
+@*                                 <a class="nav-link dropdown-toggle text-danger" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown"> *@
+@*                                     <b>Admin Panel</b> *@
+@*                                 </a> *@
+@*                                 <ul class="dropdown-menu"> *@
+@*                                     <li><a class="dropdown-item" asp-controller="Admin" asp-action="Dashboard">Dashboard</a></li> *@
+@*                                     <li><a class="dropdown-item" asp-controller="Admin" asp-action="Users">Manage Users</a></li> *@
+@*                                     <li><a class="dropdown-item" asp-controller="Admin" asp-action="Transactions">All Transactions</a></li> *@
+@*                                     <li><a asp-controller="Cheque" asp-action="AdminChequeRequests">Manage Cheque Requests</a></li> *@
+@*                                     <li><a class="dropdown-item text-warning" asp-controller="Admin" asp-action="ApproveTransfers">Approve Transfers</a></li> *@
+@*                                 </ul> *@
+@*                             </li> *@
+@*                         } *@
+
+
+@*                     </ul> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </nav> *@
+@*     </header> *@
+@*     <div class="container"> *@
+@*         <main role="main" class="pb-3"> *@
+@*             @RenderBody() *@
+@*         </main> *@
+@*     </div> *@
+
+@*     <footer class="border-top footer text-muted"> *@
+@*         <div class="container"> *@
+@*             &copy; 2025 - Unity_Bank - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
+@*         </div> *@
+@*     </footer> *@
+@*     <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+@*     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+@*     <script src="~/js/site.js" asp-append-version="true"></script> *@
+@*     @await RenderSectionAsync("Scripts", required: false) *@
+@* </body> *@
+@* </html> *@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,87 +119,122 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Unity_Bank.styles.css" asp-append-version="true" />
+    <style>
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 18px;
+        }
+
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #1e1e2f, #343a40);
+            padding-top: 20px;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .sidebar a {
+                color: white;
+                padding: 12px 20px;
+                display: flex;
+                align-items: center;
+                font-size: 18px;
+                transition: background 0.3s, transform 0.2s;
+                border-radius: 8px;
+                margin: 5px 15px;
+            }
+
+                .sidebar a:hover {
+                    background: rgba(255, 255, 255, 0.1);
+                    transform: translateX(5px);
+                }
+
+            .sidebar .nav-link.text-danger:hover {
+                background: rgba(255, 0, 0, 0.2);
+            }
+
+        .content {
+            margin-left: 0;
+            transition: margin-left 0.3s;
+        }
+
+        .show-sidebar .content {
+            margin-left: 280px;
+        }
+
+        .show-sidebar .sidebar {
+            display: block;
+        }
+    </style>
 </head>
-<body>
+<body class="@(User.Identity.IsAuthenticated ? "show-sidebar" : "")">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="sidebar">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Unity_Bank</a>
+            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+            <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a class="nav-link" asp-controller="BankAccount" asp-action="Index">My Accounts</a>
+            <a class="nav-link" asp-controller="Transaction" asp-action="TransferFunds">Transfer Funds</a>
+            <a class="nav-link" asp-controller="Transaction" asp-action="History">Transaction History</a>
+            <a class="nav-link" asp-controller="Cheque" asp-action="RequestCheque">Request Cheque Book</a>
+            <a class="nav-link" asp-controller="Profile" asp-action="Index">Profile</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="nav-link text-danger" asp-controller="Admin" asp-action="Dashboard">Admin Dashboard</a>
+                <a class="nav-link text-danger" asp-controller="Admin" asp-action="Users">Manage Users</a>
+                <a class="nav-link text-danger" asp-controller="Cheque" asp-action="AdminChequeRequests">Manage Cheque Requests</a>
+            }
+            <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+                <button type="submit" class="btn btn-danger w-100">Logout</button>
+            </form>
+        </div>
+    }
+
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Unity_Bank</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="BankAccount" asp-action="Index">My Accounts</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Transaction" asp-action="Transfer">Transfer Funds</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a>
-                                </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Transaction" asp-action="History">Transaction History</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Cheque" asp-action="RequestCheque">Request Cheque Book</a>
-                            </li>
-
-
-                            }
-                            else
-                            {
-                            <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-                            <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-
-                            }
-
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <form asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm">
-                                    <button type="submit" class="btn btn-danger">Logout</button>
-                                </form>
-
-                            </li>
-                        }
-                       
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="BankAccount" asp-action="Index">My Accounts</a>
-                            </li>
-                        }
-
-                    </ul>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="/logo.png" alt="Logo" width="40">
+                </a>
+                <span class="navbar-text mx-auto" style="font-size: 24px; font-weight: bold;">Unity Bank</span>
+                <div class="d-flex">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link" asp-controller="Profile" asp-action="Index">Profile</a>
+                    }
+                    else
+                    {
+                        <a class="nav-link btn btn-primary text-white mx-1" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        <a class="nav-link btn btn-success text-white mx-1" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    }
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container content">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Unity_Bank - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function () {
+            if ($("body").hasClass("show-sidebar")) {
+                $(".sidebar").show();
+            }
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

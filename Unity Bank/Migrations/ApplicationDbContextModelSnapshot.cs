@@ -174,9 +174,18 @@ namespace Unity_Bank.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int>("FailedTransactionAttempts")
+                        .HasColumnType("int");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsBlocked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTransactionLocked")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -201,7 +210,15 @@ namespace Unity_Bank.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionPassword")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -234,22 +251,26 @@ namespace Unity_Bank.Migrations
 
                     b.Property<string>("AccountNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("AccountType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AccountId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("BankAccounts");
                 });
@@ -268,10 +289,17 @@ namespace Unity_Bank.Migrations
                     b.Property<bool>("IsProcessed")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("ProcessedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("RequestDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("RequestType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -280,6 +308,58 @@ namespace Unity_Bank.Migrations
                     b.HasIndex("AccountId");
 
                     b.ToTable("ChequeRequests");
+                });
+
+            modelBuilder.Entity("Unity_Bank.Models.Profile", b =>
+                {
+                    b.Property<int>("ProfileId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProfileId"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nationality")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilePicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ProfileId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Profiles");
                 });
 
             modelBuilder.Entity("Unity_Bank.Models.Transaction", b =>
@@ -295,6 +375,10 @@ namespace Unity_Bank.Migrations
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ToAccountId")
                         .HasColumnType("int");
@@ -370,9 +454,7 @@ namespace Unity_Bank.Migrations
                 {
                     b.HasOne("Unity_Bank.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ApplicationUserId");
 
                     b.Navigation("ApplicationUser");
                 });
@@ -386,6 +468,17 @@ namespace Unity_Bank.Migrations
                         .IsRequired();
 
                     b.Navigation("BankAccount");
+                });
+
+            modelBuilder.Entity("Unity_Bank.Models.Profile", b =>
+                {
+                    b.HasOne("Unity_Bank.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Unity_Bank.Models.Transaction", b =>

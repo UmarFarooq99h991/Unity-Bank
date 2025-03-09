@@ -1,24 +1,33 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Unity_Bank.Models;
 
 namespace Unity_Bank.Models
 {
+    public enum AccountTypeEnum
+    {
+        Savings,
+        Checking
+    }
+
     public class BankAccount
     {
         [Key]
         public int AccountId { get; set; }
 
         [Required]
+        [StringLength(20)] // Limit Account Number length
         public string AccountNumber { get; set; }
 
         [Required]
-        public string AccountType { get; set; } // Savings, Checking
+        public String AccountType { get; set; } // Enum instead of string
 
-        public decimal Balance { get; set; }
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Balance { get; set; } = 0; // Initialize Balance
 
-        [ForeignKey("ApplicationUser")]
-        public string UserId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        [Required]
+        public string UserId { get; set; } // Foreign key for User
+
+        public ApplicationUser ApplicationUser { get; set; } // Navigation property
     }
 }

@@ -1,0 +1,55 @@
+﻿@* @model List<Unity_Bank.Models.ApplicationUser> *@
+
+@* <h2>Users List</h2> *@
+@* <table> *@
+@*     <tr> *@
+@*         <th>Name</th> *@
+@*         <th>Email</th> *@
+@*     </tr> *@
+@*     @foreach (var user in Model) *@
+@*     { *@
+@*         <tr> *@
+@*             <td>@user.UserName</td> *@
+@*             <td>@user.Email</td> *@
+@*         </tr> *@
+@*     } *@
+@* </table> *@
+@model List<Unity_Bank.Models.ApplicationUser>
+
+<h2 class="text-center text-primary my-4 fw-bold">Users List</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered shadow-sm rounded">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody class="text-center align-middle">
+            @foreach (var user in Model)
+            {
+                <tr class="transition">
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.1);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .transition {
+        transition: all 0.3s ease-in-out;
+    }
+</style>

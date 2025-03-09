@@ -12,6 +12,8 @@ namespace Unity_Bank.Data
         public DbSet<BankAccount> BankAccounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<ChequeRequest> ChequeRequests { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+
 
     }
 }

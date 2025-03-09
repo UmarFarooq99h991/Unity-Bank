@@ -12,9 +12,11 @@ namespace Unity_Bank.Models
         [Required]
         public string TransactionType { get; set; } // Deposit, Withdrawal, Transfer
 
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        // ✅ Primary Account
+        // ✅ Primary Account (Sender for transfers, or main account for deposits)
         [Required]
         public int AccountId { get; set; }
 
@@ -27,6 +29,12 @@ namespace Unity_Bank.Models
         [ForeignKey("ToAccountId")]
         public BankAccount? ToAccount { get; set; }
 
+        // ✅ Ensure Date Exists
+        [Required]
         public DateTime TransactionDate { get; set; } = DateTime.Now;
+
+        // ✅ Status Field Added
+        [Required]
+        public string Status { get; set; } = "Pending"; // Success, Failed, Pending
     }
 }

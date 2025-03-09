@@ -1,0 +1,113 @@
+﻿@* @model List<Unity_Bank.Models.ChequeRequest> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "My Cheque Requests"; *@
+@* } *@
+
+@* <h2>My Cheque Requests</h2> *@
+
+@* @if (!Model.Any()) *@
+@* { *@
+@*     <div class="alert alert-info">You have no cheque requests yet.</div> *@
+@* } *@
+@* else *@
+@* { *@
+@*     <table class="table table-bordered"> *@
+@*         <thead class="thead-dark"> *@
+@*             <tr> *@
+@*                 <th>#</th> *@
+@*                 <th>Account Number</th> *@
+@*                 <th>Request Type</th> *@
+@*                 <th>Request Date</th> *@
+@*                 <th>Status</th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody> *@
+@*             @foreach (var request in Model) *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td>@request.RequestId</td> *@
+@*                     <td>@request.BankAccount.AccountNumber</td> *@
+@*                     <td>@request.RequestType</td> *@
+@*                     <td>@request.RequestDate.ToString("dd-MM-yyyy")</td> *@
+@*                     <td> *@
+@*                         @if (request.IsProcessed) *@
+@*                         { *@
+@*                             <span class="badge bg-success">Processed</span> *@
+@*                         } *@
+@*                         else *@
+@*                         { *@
+@*                             <span class="badge bg-warning text-dark">Pending</span> *@
+@*                         } *@
+@*                     </td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*     </table> *@
+@* } *@
+@model List<Unity_Bank.Models.ChequeRequest>
+
+@{
+    ViewData["Title"] = "My Cheque Requests";
+}
+
+<h2 class="text-center text-primary my-4 fw-bold">My Cheque Requests</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center fw-bold shadow-sm">You have no cheque requests yet.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered shadow-sm rounded">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>#</th>
+                    <th>Account Number</th>
+                    <th>Request Type</th>
+                    <th>Request Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody class="text-center align-middle">
+                @foreach (var request in Model)
+                {
+                    <tr class="transition">
+                        <td class="fw-bold">@request.RequestId</td>
+                        <td>@request.BankAccount.AccountNumber</td>
+                        <td>
+                            <span class="badge bg-info text-dark px-3 py-2">@request.RequestType</span>
+                        </td>
+                        <td>@request.RequestDate.ToString("dd-MM-yyyy")</td>
+                        <td>
+                            <span class="badge @(request.IsProcessed ? "bg-success" : "bg-warning text-dark") px-3 py-2 fw-bold">
+                                @(request.IsProcessed ? "Processed" : "Pending")
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<style>
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.1);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .transition {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .badge {
+        font-size: 1rem;
+    }
+</style>

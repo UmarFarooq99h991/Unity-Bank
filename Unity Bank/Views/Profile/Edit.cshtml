@@ -1,0 +1,121 @@
+﻿@* @model Unity_Bank.Models.Profile *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Edit Profile"; *@
+@* } *@
+
+@* <h2>Edit Profile</h2> *@
+@* <form asp-action="Edit" asp-controller="Profile" asp-route-id="@Model.ProfileId" method="post"> *@
+@*     <input type="hidden" asp-for="ProfileId" /> *@
+
+@*     <label>Full Name</label> *@
+@*     <input asp-for="FullName" class="form-control" required /> *@
+
+@*     <label>Phone Number</label> *@
+@*     <input asp-for="PhoneNumber" class="form-control" required /> *@
+
+@*     <label>Address</label> *@
+@*     <input asp-for="Address" class="form-control" required /> *@
+
+@*     <label>Date of Birth</label> *@
+@*     <input asp-for="DateOfBirth" type="date" class="form-control" required /> *@
+
+@*     <label>Gender</label> *@
+@*     <select asp-for="Gender" class="form-control" required> *@
+@*         <option value="">Select Gender</option> *@
+@*         <option>Male</option> *@
+@*         <option>Female</option> *@
+@*     </select> *@
+
+@*     <label>Nationality</label> *@
+@*     <input asp-for="Nationality" class="form-control" required /> *@
+
+@*     <button type="submit" class="btn btn-primary">Save Changes</button> *@
+@* </form> *@
+@model Unity_Bank.Models.Profile
+
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<h2 class="text-center text-primary my-4 fw-bold">Edit Your Profile</h2>
+
+<div class="card shadow-lg p-4 bg-light rounded">
+    <form asp-action="Edit" asp-controller="Profile" asp-route-id="@Model.ProfileId" method="post" class="needs-validation" novalidate>
+        <input type="hidden" asp-for="ProfileId" />
+
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label fw-bold">Full Name</label>
+            <input asp-for="FullName" class="form-control" required />
+            <span class="text-danger" asp-validation-for="FullName"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label fw-bold">Phone Number</label>
+            <input asp-for="PhoneNumber" type="tel" class="form-control" required />
+            <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label fw-bold">Address</label>
+            <input asp-for="Address" class="form-control" required />
+            <span class="text-danger" asp-validation-for="Address"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DateOfBirth" class="form-label fw-bold">Date of Birth</label>
+            <input asp-for="DateOfBirth" type="date" class="form-control" required />
+            <span class="text-danger" asp-validation-for="DateOfBirth"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Gender" class="form-label fw-bold">Gender</label>
+            <select asp-for="Gender" class="form-select" required>
+                <option value="">-- Select Gender --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <span class="text-danger" asp-validation-for="Gender"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Nationality" class="form-label fw-bold">Nationality</label>
+            <input asp-for="Nationality" class="form-control" required />
+            <span class="text-danger" asp-validation-for="Nationality"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Save Changes</button>
+    </form>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+<style>
+    .card {
+        max-width: 600px;
+        margin: auto;
+        border-radius: 12px;
+    }
+
+    .form-control, .form-select, .btn {
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: 0.3s ease-in-out;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .alert {
+        border-radius: 8px;
+    }
+</style>

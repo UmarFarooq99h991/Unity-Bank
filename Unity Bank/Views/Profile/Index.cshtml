@@ -1,0 +1,109 @@
+﻿@* @model Unity_Bank.Models.Profile *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Profile Details"; *@
+@* } *@
+
+@* <h2>Profile Details</h2> *@
+
+@* <table class="table"> *@
+@*     <tr> *@
+@*         <th>Full Name</th> *@
+@*         <td>@Model.FullName</td> *@
+@*     </tr> *@
+@*     <tr> *@
+@*         <th>Phone Number</th> *@
+@*         <td>@Model.PhoneNumber</td> *@
+@*     </tr> *@
+@*     <tr> *@
+@*         <th>Address</th> *@
+@*         <td>@Model.Address</td> *@
+@*     </tr> *@
+
+@*     <!-- 🆕 New Fields --> *@
+@*     <tr> *@
+@*         <th>Date of Birth</th> *@
+@*         <td>@Model.DateOfBirth?.ToString("yyyy-MM-dd")</td> *@
+@*     </tr> *@
+@*     <tr> *@
+@*         <th>Gender</th> *@
+@*         <td>@Model.Gender</td> *@
+@*     </tr> *@
+@*     <tr> *@
+@*         <th>Nationality</th> *@
+@*         <td>@Model.Nationality</td> *@
+@*     </tr> *@
+@* </table> *@
+
+@* <a asp-action="Edit" asp-route-id="@Model.ProfileId" class="btn btn-primary">Edit Profile</a> *@
+@model Unity_Bank.Models.Profile
+
+@{
+    ViewData["Title"] = "Profile Details";
+}
+
+<h2 class="text-center text-primary my-4 fw-bold">Profile Details</h2>
+
+<div class="card shadow-lg p-4 bg-light rounded">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th class="bg-secondary text-white">Full Name</th>
+                <td>@Model.FullName</td>
+            </tr>
+            <tr>
+                <th class="bg-secondary text-white">Phone Number</th>
+                <td>@Model.PhoneNumber</td>
+            </tr>
+            <tr>
+                <th class="bg-secondary text-white">Address</th>
+                <td>@Model.Address</td>
+            </tr>
+            <tr>
+                <th class="bg-secondary text-white">Date of Birth</th>
+                <td>@Model.DateOfBirth?.ToString("yyyy-MM-dd")</td>
+            </tr>
+            <tr>
+                <th class="bg-secondary text-white">Gender</th>
+                <td>@Model.Gender</td>
+            </tr>
+            <tr>
+                <th class="bg-secondary text-white">Nationality</th>
+                <td>@Model.Nationality</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a asp-action="Edit" asp-route-id="@Model.ProfileId" class="btn btn-primary px-4 py-2 fw-bold">Edit Profile</a>
+    </div>
+</div>
+
+<style>
+    .card {
+        max-width: 600px;
+        margin: auto;
+        border-radius: 12px;
+    }
+
+    .table th {
+        width: 40%;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .table td {
+        text-align: left;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: 0.3s ease-in-out;
+        margin-top: 20px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>

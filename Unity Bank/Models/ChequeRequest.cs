@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Unity_Bank.Models;
 
 namespace Unity_Bank.Models
 {
@@ -20,6 +19,11 @@ namespace Unity_Bank.Models
         [Required]
         public DateTime RequestDate { get; set; } = DateTime.Now;
 
+        // 🆕 Status Field (Pending, Approved, Rejected)
+        [Required]
+        public string Status { get; set; } = "Pending";
         public bool IsProcessed { get; set; } = false;
+        // 🆕 Processed Date (Nullable, updated when approved/rejected)
+        public DateTime? ProcessedDate { get; set; }
     }
 }

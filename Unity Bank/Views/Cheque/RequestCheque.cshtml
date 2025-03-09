@@ -1,27 +1,125 @@
-﻿@{
+﻿@* @model Unity_Bank.Models.ChequeRequestViewModel  *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Request Cheque Book"; *@
+@* } *@
+
+@* <h2>Request Cheque Book / Stop Payment</h2> *@
+
+@* @if (TempData["Success"] != null) *@
+@* { *@
+@*     <div class="alert alert-success">@TempData["Success"]</div> *@
+@* } *@
+@* @if (TempData["Error"] != null) *@
+@* { *@
+@*     <div class="alert alert-danger">@TempData["Error"]</div> *@
+@* } *@
+
+@* <form asp-action="RequestCheque" method="post"> *@
+@*     @Html.AntiForgeryToken()  *@
+
+@*     <div class="form-group"> *@
+@*         <label for="AccountId">Select Account</label> *@
+@*         <select asp-for="AccountId" class="form-control" required> *@
+@*             <option value="">-- Select Account --</option> *@
+@*             @foreach (var account in Model.Accounts)  *@
+@*             { *@
+@*                 <option value="@account.AccountId">@account.AccountNumber</option> *@
+@*             } *@
+@*         </select> *@
+@*         <span class="text-danger" asp-validation-for="AccountId"></span> *@
+@*     </div> *@
+
+@*     <div class="form-group"> *@
+@*         <label for="RequestType">Request Type</label> *@
+@*         <select asp-for="RequestType" class="form-control" required> *@
+@*             <option value="">-- Select Request Type --</option> *@
+@*             <option value="New Cheque Book">New Cheque Book</option> *@
+@*             <option value="Stop Payment">Stop Payment</option> *@
+@*         </select> *@
+@*         <span class="text-danger" asp-validation-for="RequestType"></span> *@
+@*     </div> *@
+
+@*     <button type="submit" class="btn btn-primary mt-2">Submit Request</button> *@
+@* </form> *@
+
+@* @section Scripts { *@
+@*     @await Html.PartialAsync("_ValidationScriptsPartial") *@
+@* } *@
+@model Unity_Bank.Models.ChequeRequestViewModel
+
+@{
     ViewData["Title"] = "Request Cheque Book";
 }
 
-<h2>Request Cheque Book / Stop Payment</h2>
+<h2 class="text-center text-primary my-4 fw-bold">Request Cheque Book / Stop Payment</h2>
 
-<form asp-action="RequestCheque" method="post">
-    <div class="form-group">
-        <label>Account</label>
-        <select name="AccountId" class="form-control">
-            @foreach (var account in ViewBag.Accounts)
-            {
-                <option value="@account.AccountId">@account.AccountNumber</option>
-            }
-        </select>
-    </div>
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success text-center fw-bold shadow-sm">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger text-center fw-bold shadow-sm">@TempData["Error"]</div>
+}
 
-    <div class="form-group">
-        <label>Request Type</label>
-        <select name="RequestType" class="form-control">
-            <option value="New Cheque Book">New Cheque Book</option>
-            <option value="Stop Payment">Stop Payment</option>
-        </select>
-    </div>
+<div class="card shadow-lg p-4 bg-light rounded">
+    <form asp-action="RequestCheque" method="post" class="needs-validation" novalidate>
+        @Html.AntiForgeryToken()
 
-    <button type="submit" class="btn btn-primary">Submit Request</button>
-</form>
+        <div class="mb-3">
+            <label for="AccountId" class="form-label fw-bold">Select Account</label>
+            <select asp-for="AccountId" class="form-select" required>
+                <option value="">-- Select Account --</option>
+                @foreach (var account in Model.Accounts)
+                {
+                    <option value="@account.AccountId">@account.AccountNumber</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="AccountId"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="RequestType" class="form-label fw-bold">Request Type</label>
+            <select asp-for="RequestType" class="form-select" required>
+                <option value="">-- Select Request Type --</option>
+                <option value="New Cheque Book">New Cheque Book</option>
+                <option value="Stop Payment">Stop Payment</option>
+            </select>
+            <span class="text-danger" asp-validation-for="RequestType"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Submit Request</button>
+    </form>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+<style>
+    .card {
+        max-width: 600px;
+        margin: auto;
+        border-radius: 12px;
+    }
+
+    .form-select, .btn {
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: 0.3s ease-in-out;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .alert {
+        border-radius: 8px;
+    }
+</style>

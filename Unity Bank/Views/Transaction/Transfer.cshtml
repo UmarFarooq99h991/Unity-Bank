@@ -1,46 +1,137 @@
-﻿@{
+﻿@* @{ *@
+@*     ViewData["Title"] = "Transfer Funds"; *@
+@* } *@
+
+@* <h2>Transfer Funds</h2> *@
+
+@* @if (TempData["Error"] != null) *@
+@* { *@
+@*     <div class="alert alert-danger">@TempData["Error"]</div> *@
+@* } *@
+
+@* @if (TempData["Success"] != null) *@
+@* { *@
+@*     <div class="alert alert-success">@TempData["Success"]</div> *@
+@* } *@
+
+@* <form asp-action="TransferFunds" method="post"> *@
+@*     <div class="mb-3"> *@
+@*         <label for="senderAccountId" class="form-label">Sender Account</label> *@
+@*         <select class="form-control" name="senderAccountId" required> *@
+@*             <option value="">Select Account</option> *@
+@*             @foreach (var account in ViewBag.Accounts) *@
+@*             { *@
+@*                 <option value="@account.AccountId">@account.AccountNumber - Balance: @account.Balance</option> *@
+@*             } *@
+@*         </select> *@
+@*     </div> *@
+
+@*     <div class="mb-3"> *@
+@*         <label for="receiverAccountId" class="form-label">Receiver Account</label> *@
+@*         <select class="form-control" name="receiverAccountId" required> *@
+@*             <option value="">Select Account</option> *@
+@*             @foreach (var account in ViewBag.Accounts) *@
+@*             { *@
+@*                 <option value="@account.AccountId">@account.AccountNumber</option> *@
+@*             } *@
+@*         </select> *@
+@*     </div> *@
+
+@*     <div class="mb-3"> *@
+@*         <label for="amount" class="form-label">Amount</label> *@
+@*         <input type="number" class="form-control" name="amount" step="0.01" min="1" required> *@
+@*     </div> *@
+
+@*     <button type="submit" class="btn btn-primary">Transfer</button> *@
+@* </form> *@
+@{
     ViewData["Title"] = "Transfer Funds";
 }
 
-<h2>Transfer Funds</h2>
+<h2 class="text-center text-primary my-4 fw-bold">Transfer Funds</h2>
 
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger">@TempData["Error"]</div>
-}
+<div class="card shadow-lg p-4 bg-light rounded">
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
 
-@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success">@TempData["Success"]</div>
-}
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
 
-<form asp-action="TransferFunds" method="post">
-    <div class="mb-3">
-        <label for="senderAccountId" class="form-label">Sender Account</label>
-        <select class="form-control" name="senderAccountId" required>
-            <option value="">Select Account</option>
-            @foreach (var account in ViewBag.Accounts)
-            {
-                <option value="@account.AccountId">@account.AccountNumber - Balance: @account.Balance</option>
-            }
-        </select>
-    </div>
+    <form asp-action="TransferFunds" method="post" onsubmit="return validateTransfer()">
+        <div class="mb-3">
+            <label for="senderAccountId" class="fw-bold">Sender Account</label>
+            <select class="form-control" name="senderAccountId" id="senderAccountId" required>
+                <option value="">-- Select Sender Account --</option>
+                @foreach (var account in ViewBag.Accounts)
+                {
+                    <option value="@account.AccountId" data-balance="@account.Balance">
+                        @account.AccountNumber - Balance: ₹@account.Balance.ToString("N2")
+                    </option>
+                }
+            </select>
+        </div>
 
-    <div class="mb-3">
-        <label for="receiverAccountId" class="form-label">Receiver Account</label>
-        <select class="form-control" name="receiverAccountId" required>
-            <option value="">Select Account</option>
-            @foreach (var account in ViewBag.Accounts)
-            {
-                <option value="@account.AccountId">@account.AccountNumber</option>
-            }
-        </select>
-    </div>
+        <div class="mb-3">
+            <label for="receiverAccountId" class="fw-bold">Receiver Account</label>
+            <select class="form-control" name="receiverAccountId" id="receiverAccountId" required>
+                <option value="">-- Select Receiver Account --</option>
+                @foreach (var account in ViewBag.Accounts)
+                {
+                    <option value="@account.AccountId">@account.AccountNumber</option>
+                }
+            </select>
+        </div>
 
-    <div class="mb-3">
-        <label for="amount" class="form-label">Amount</label>
-        <input type="number" class="form-control" name="amount" step="0.01" min="1" required>
-    </div>
+        <div class="mb-3">
+            <label for="amount" class="fw-bold">Amount (₹)</label>
+            <input type="number" class="form-control" name="amount" id="amount" step="0.01" min="1" required>
+            <small class="text-danger d-none" id="balanceError">Insufficient funds!</small>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Transfer</button>
-</form>
+        <div class="mb-3">
+            <label for="transactionPassword" class="fw-bold">Transaction Password</label>
+            <input type="password" class="form-control" name="transactionPassword" id="transactionPassword" required>
+            <small class="form-text text-muted">This password is required for secure transactions.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary fw-bold w-100">🔄 Transfer Funds</button>
+    </form>
+</div>
+
+<script>
+    function validateTransfer() {
+        let senderSelect = document.getElementById("senderAccountId");
+        let selectedSender = senderSelect.options[senderSelect.selectedIndex];
+        let balance = parseFloat(selectedSender.getAttribute("data-balance")) || 0;
+        let amount = parseFloat(document.getElementById("amount").value) || 0;
+
+        if (amount > balance) {
+            document.getElementById("balanceError").classList.remove("d-none");
+            return false;
+        } else {
+            document.getElementById("balanceError").classList.add("d-none");
+        }
+
+        return true;
+    }
+</script>
+
+<style>
+    .card {
+        max-width: 600px;
+        margin: auto;
+        border-radius: 12px;
+    }
+
+    .btn-primary {
+        transition: 0.3s ease-in-out;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>

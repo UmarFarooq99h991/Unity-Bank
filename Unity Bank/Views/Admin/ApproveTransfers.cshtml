@@ -1,0 +1,115 @@
+﻿@* @model List<Unity_Bank.Models.Transaction> *@
+
+@* <h2>Pending Transactions for Approval</h2> *@
+
+@* <table class="table table-bordered"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <th>Transaction ID</th> *@
+@*             <th>Sender Account</th> *@
+@*             <th>Recipient Account</th> *@
+@*             <th>Amount</th> *@
+@*             <th>Status</th> *@
+@*             <th>Actions</th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*         @foreach (var transaction in Model) *@
+@*         { *@
+@*             <tr> *@
+@*                 <td>@transaction.TransactionId</td> *@
+@*                 <td>@transaction.AccountId</td> *@
+@*                 <td>@transaction.ToAccountId</td> *@
+@*                 <td>@transaction.Amount</td> *@
+@*                 <td>@transaction.Status</td> *@
+@*                 <td> *@
+@*                     <form method="post" asp-action="ApproveTransfer" asp-route-transactionId="@transaction.TransactionId"> *@
+@*                         <button type="submit" class="btn btn-success">Approve</button> *@
+@*                     </form> *@
+@*                     <form method="post" asp-action="RejectTransfer" asp-route-transactionId="@transaction.TransactionId"> *@
+@*                         <button type="submit" class="btn btn-danger">Reject</button> *@
+@*                     </form> *@
+@*                 </td> *@
+@*             </tr> *@
+@*         } *@
+@*     </tbody> *@
+@* </table> *@
+@model List<Unity_Bank.Models.Transaction>
+
+<h2 class="text-center text-primary my-4 fw-bold">Pending Transactions for Approval</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered shadow-sm rounded">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>Transaction ID</th>
+                <th>Sender Account</th>
+                <th>Recipient Account</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-center align-middle">
+            @foreach (var transaction in Model)
+            {
+                <tr class="transition">
+                    <td class="fw-semibold">@transaction.TransactionId</td>
+                    <td>@transaction.AccountId</td>
+                    <td>@transaction.ToAccountId</td>
+                    <td class="fw-bold text-success">$@transaction.Amount.ToString("N2")</td>
+                    <td>
+                        <span class="badge @(transaction.Status == "Pending" ? "bg-warning text-dark" : "bg-success") p-2">
+                            @transaction.Status
+                        </span>
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            <form method="post" asp-action="ApproveTransfer" asp-route-transactionId="@transaction.TransactionId">
+                                <button type="submit" class="btn btn-success btn-sm px-3 shadow-sm transition">
+                                    <i class="bi bi-check-circle"></i> Approve
+                                </button>
+                            </form>
+                            <form method="post" asp-action="RejectTransfer" asp-route-transactionId="@transaction.TransactionId">
+                                <button type="submit" class="btn btn-danger btn-sm px-3 shadow-sm transition">
+                                    <i class="bi bi-x-circle"></i> Reject
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.1);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .transition {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn {
+        border-radius: 6px;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .badge {
+        font-size: 0.85rem;
+        border-radius: 5px;
+    }
+</style>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Unity Bank\\Unity Bank\\Unity Bank.csproj": {}
+    "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\Unity Bank.csproj": {}
   },
   "projects": {
-    "E:\\Unity Bank\\Unity Bank\\Unity Bank.csproj": {
+    "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\Unity Bank.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Unity Bank\\Unity Bank\\Unity Bank.csproj",
+        "projectUniqueName": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\Unity Bank.csproj",
         "projectName": "Unity Bank",
-        "projectPath": "E:\\Unity Bank\\Unity Bank\\Unity Bank.csproj",
+        "projectPath": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\Unity Bank.csproj",
         "packagesPath": "C:\\Users\\AZAZEL\\.nuget\\packages\\",
-        "outputPath": "E:\\Unity Bank\\Unity Bank\\obj\\",
+        "outputPath": "E:\\Unity Bank\\Unity-Bank\\Unity Bank\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

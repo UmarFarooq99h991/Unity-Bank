@@ -1,29 +1,169 @@
-﻿@model IEnumerable<Unity_Bank.Models.Transaction>
+﻿@* @model IEnumerable<Unity_Bank.Models.Transaction> *@
 
-<h2>Transaction History</h2>
+@* <h2>Transaction History</h2> *@
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>From Account</th>
-            <th>To Account</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var transaction in Model)
-        {
-            <tr>
-                <td>@transaction.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td>
-                <td>@transaction.TransactionType</td>
-                <td>@transaction.Amount</td>
-                <td>@transaction.BankAccount.AccountNumber</td>
-                <td>@(transaction.ToAccount != null ? transaction.ToAccount.AccountNumber : "-")</td>
-            </tr>
+@* <div class="mb-3"> *@
+@*     <label for="filterType">Filter by Type:</label> *@
+@*     <select id="filterType" class="form-control" onchange="filterTransactions()"> *@
+@*         <option value="">All</option> *@
+@*         <option value="Deposit">Deposit</option> *@
+@*         <option value="Withdrawal">Withdrawal</option> *@
+@*         <option value="Transfer">Transfer</option> *@
+@*     </select> *@
+@* </div> *@
+
+@* <table class="table table-striped" id="transactionTable"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <th>Date</th> *@
+@*             <th>Type</th> *@
+@*             <th>Amount</th> *@
+@*             <th>From Account</th> *@
+@*             <th>To Account</th> *@
+@*             <th>Status</th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*         @foreach (var transaction in Model) *@
+@*         { *@
+@*             <tr> *@
+@*                 <td>@transaction.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td> *@
+@*                 <td class="transaction-type">@transaction.TransactionType</td> *@
+@*                 <td>@transaction.Amount</td> *@
+@*                 <td>@transaction.BankAccount.AccountNumber</td> *@
+@*                 <td>@(transaction.ToAccount != null ? transaction.ToAccount.AccountNumber : "-")</td> *@
+@*                 <td>@transaction.Status</td> *@
+@*             </tr> *@
+@*         } *@
+@*     </tbody> *@
+@* </table> *@
+
+@* <div class="mt-3"> *@
+@*     <button onclick="window.print()" class="btn btn-primary">Print Statement</button> *@
+@*     <button onclick="downloadExcel()" class="btn btn-success">Download Excel</button> *@
+@* </div> *@
+
+@* <script> *@
+@*     function filterTransactions() { *@
+@*         var filter = document.getElementById("filterType").value.toLowerCase(); *@
+@*         var rows = document.querySelectorAll("#transactionTable tbody tr"); *@
+@*         rows.forEach(row => { *@
+@*             var type = row.querySelector(".transaction-type").innerText.toLowerCase(); *@
+@*             row.style.display = filter === "" || type === filter ? "" : "none"; *@
+@*         }); *@
+@*     } *@
+
+@*     function downloadExcel() { *@
+@*         alert("Excel download feature coming soon!"); *@
+@*     } *@
+@* </script> *@
+@model IEnumerable<Unity_Bank.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Transaction History";
+}
+
+<h2 class="text-center text-primary my-4 fw-bold">Transaction History</h2>
+
+<div class="card shadow-lg p-4 bg-light rounded">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="filterType" class="fw-bold">Filter by Type:</label>
+            <select id="filterType" class="form-control" onchange="filterTransactions()">
+                <option value="">All</option>
+                <option value="Deposit">Deposit</option>
+                <option value="Withdrawal">Withdrawal</option>
+                <option value="Transfer">Transfer</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="transactionTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Amount (₹)</th>
+                    <th>From Account</th>
+                    <th>To Account</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var transaction in Model)
+                {
+                    <tr>
+                        <td>@transaction.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td class="transaction-type">
+                            <span class="badge @(transaction.TransactionType == "Deposit" ? "bg-success" : transaction.TransactionType == "Withdrawal" ? "bg-danger" : "bg-primary")">
+                                @transaction.TransactionType
+                            </span>
+                        </td>
+                        <td>@transaction.Amount.ToString("N2")</td>
+                        <td>@transaction.BankAccount.AccountNumber</td>
+                        <td>@(transaction.ToAccount != null ? transaction.ToAccount.AccountNumber : "-")</td>
+                        <td>
+                            <span class="badge @(transaction.Status == "Completed" ? "bg-success" : "bg-warning text-dark")">
+                                @transaction.Status
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4 text-center">
+        <button onclick="window.print()" class="btn btn-primary fw-bold me-2">🖨 Print Statement</button>
+        <button onclick="downloadExcel()" class="btn btn-success fw-bold">📥 Download Excel</button>
+    </div>
+</div>
+
+<script>
+    function filterTransactions() {
+        var filter = document.getElementById("filterType").value.toLowerCase();
+        var rows = document.querySelectorAll("#transactionTable tbody tr");
+        rows.forEach(row => {
+            var type = row.querySelector(".transaction-type").innerText.toLowerCase();
+            row.style.display = filter === "" || type === filter ? "" : "none";
+        });
+    }
+
+    function downloadExcel() {
+        let table = document.getElementById("transactionTable");
+        let wb = XLSX.utils.table_to_book(table, { sheet: "Transactions" });
+        XLSX.writeFile(wb, "Transaction_History.xlsx");
+    }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+
+<style>
+    .card {
+        max-width: 900px;
+        margin: auto;
+        border-radius: 12px;
+    }
+
+    .table th {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .table td {
+        text-align: center;
+    }
+
+    .btn-primary, .btn-success {
+        transition: 0.3s ease-in-out;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
-    </tbody>
-</table>
 
-<button onclick="window.print()" class="btn btn-primary">Print Statement</button>
+        .btn-success:hover {
+            background-color: #218838;
+        }
+</style>

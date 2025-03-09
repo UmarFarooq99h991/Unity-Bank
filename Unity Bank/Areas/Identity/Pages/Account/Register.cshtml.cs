@@ -122,7 +122,8 @@
                     {
                         UserName = Input.Email,
                         Email = Input.Email,
-                        FullName = Input.FullName // ✅ Ensure FullName is assigned
+                        FullName = Input.FullName,
+                        Role = "User"
                     };
 
                     var result = await _userManager.CreateAsync(user, Input.Password);

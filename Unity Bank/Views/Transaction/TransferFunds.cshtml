@@ -1,0 +1,92 @@
+﻿@* @model Unity_Bank.Models.ErrorViewModel *@
+
+
+
+@* <form asp-action="TransferFunds" method="post"> *@
+@*     <div class="form-group"> *@
+@*         <label>Recipient Account Number</label> *@
+@*         @* <input type="text" name="RecipientAccountNumber" class="form-control" required /> *@
+@*     <select class="form-control" name="RecipientAccountNumber" required> *@
+@*         <option value="">Select Account</option> *@
+@*         @foreach (var account in ViewBag.Accounts) *@
+@*         { *@
+@*             <option value="@account.AccountId">@account.AccountNumber - Balance: @account.Balance</option> *@
+@*         } *@
+@*     </select> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label>Amount</label> *@
+@*         <input type="number" name="Amount" class="form-control" required /> *@
+@*     </div> *@
+
+@*     <div class="form-group"> *@
+@*         <label>Transaction Password</label> *@
+@*         <input type="password" name="TransactionPassword" class="form-control" required /> *@
+@*     </div> *@
+
+@*     <button type="submit" class="btn btn-primary">Transfer</button> *@
+@* </form> *@
+
+<h2 class="text-center text-primary fw-bold my-4">💰 Transfer Funds</h2>
+
+<div class="card shadow-lg p-4 bg-light rounded">
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger text-center fw-bold">@TempData["Error"]</div>
+    }
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success text-center fw-bold">@TempData["Success"]</div>
+    }
+
+    <form asp-action="TransferFunds" method="post">
+        <div class="mb-3">
+            <label class="fw-bold">Recipient Account Number</label>
+            <select class="form-select" name="RecipientAccountNumber" required>
+                <option value="">-- Select Account --</option>
+                @foreach (var account in ViewBag.Accounts)
+                {
+                    <option value="@account.AccountId">
+                        @account.AccountNumber - Balance: ₹@account.Balance.ToString("N2")
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="fw-bold">Amount (₹)</label>
+            <input type="number" name="Amount" class="form-control border-primary shadow-sm" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="fw-bold">Transaction Password</label>
+            <input type="password" name="TransactionPassword" class="form-control border-primary shadow-sm" required>
+        </div>
+
+        <button type="submit" class="btn btn-success fw-bold w-100 py-2">🔄 Transfer Now</button>
+    </form>
+</div>
+
+<style>
+    .card {
+        max-width: 500px;
+        margin: auto;
+        border-radius: 12px;
+    }
+
+    .btn-success {
+        transition: 0.3s ease-in-out;
+        font-size: 18px;
+    }
+
+        .btn-success:hover {
+            background-color: #28a745;
+            transform: scale(1.05);
+        }
+
+    .form-control, .form-select {
+        border-radius: 10px;
+        font-size: 16px;
+    }
+</style>

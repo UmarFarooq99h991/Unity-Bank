@@ -1,0 +1,207 @@
+﻿@* @model Unity_Bank.Models.AdminDashboardViewModel *@
+
+@* <h2 style="text-align: center; color: #007bff; margin: 20px 0; font-weight: bold;">Admin Dashboard</h2> *@
+
+@* <h3 style="color: #6c757d; font-weight: bold;">Users</h3> *@
+@* <div class="table-responsive"> *@
+@*     <table class="table table-hover table-striped table-bordered shadow-sm" style="border-radius: 10px; overflow: hidden;"> *@
+@*         <thead style="background-color: #343a40; color: white; text-align: center;"> *@
+@*             <tr> *@
+@*                 <th>Name</th> *@
+@*                 <th>Email</th> *@
+@*                 <th>Status</th> *@
+@*                 <th>Action</th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody style="text-align: center;"> *@
+@*             @foreach (var user in Model.Users) *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td>@user.UserName</td> *@
+@*                     <td>@user.Email</td> *@
+@*                     <td> *@
+@*                         <span style="padding: 5px 10px; border-radius: 5px; font-weight: bold; color: white; background-color: @(user.IsBlocked ? "#dc3545" : "#28a745")"> *@
+@*                             @(user.IsBlocked ? "Blocked" : "Active") *@
+@*                         </span> *@
+@*                     </td> *@
+@*                     <td> *@
+@*                         <a asp-action="ToggleUserStatus" asp-route-id="@user.Id" style="background-color: #ffc107; border: none; padding: 5px 10px; color: #343a40; font-weight: bold; border-radius: 5px; text-decoration: none; display: inline-block;"> *@
+@*                             <i class="bi bi-person-x"></i> @(user.IsBlocked ? "Unblock" : "Block") *@
+@*                         </a> *@
+@*                     </td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*     </table> *@
+@* </div> *@
+
+@* <h3 style="color: #6c757d; font-weight: bold;">Accounts</h3> *@
+@* <div class="table-responsive"> *@
+@*     <table class="table table-hover table-striped table-bordered shadow-sm" style="border-radius: 10px; overflow: hidden;"> *@
+@*         <thead style="background-color: #343a40; color: white; text-align: center;"> *@
+@*             <tr> *@
+@*                 <th>Account Number</th> *@
+@*                 <th>Balance</th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody style="text-align: center;"> *@
+@*             @foreach (var account in Model.Accounts) *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td>@account.AccountNumber</td> *@
+@*                     <td style="font-weight: bold; color: #28a745;">$@account.Balance.ToString("N2")</td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*     </table> *@
+@* </div> *@
+
+@* <h3 style="color: #6c757d; font-weight: bold;">Recent Transactions</h3> *@
+@* <div class="table-responsive"> *@
+@*     <table class="table table-hover table-striped table-bordered shadow-sm" style="border-radius: 10px; overflow: hidden;"> *@
+@*         <thead style="background-color: #343a40; color: white; text-align: center;"> *@
+@*             <tr> *@
+@*                 <th>Date</th> *@
+@*                 <th>From</th> *@
+@*                 <th>To</th> *@
+@*                 <th>Amount</th> *@
+@*                 <th>Status</th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody style="text-align: center;"> *@
+@*             @foreach (var transaction in Model.Transactions) *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td>@transaction.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td> *@
+@*                     <td>@transaction.BankAccount.AccountNumber</td> *@
+@*                     <td>@(transaction.ToAccount != null ? transaction.ToAccount.AccountNumber : "N/A")</td> *@
+@*                     <td style="font-weight: bold; color: #28a745;">$@transaction.Amount.ToString("N2")</td> *@
+@*                     <td> *@
+@*                         <span style="padding: 5px 10px; border-radius: 5px; font-weight: bold; color: white; background-color: @(transaction.Status == "Pending" ? "#ffc107" : "#28a745")"> *@
+@*                             @transaction.Status *@
+@*                         </span> *@
+@*                     </td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*     </table> *@
+@* </div> *@
+@model Unity_Bank.Models.AdminDashboardViewModel
+
+<h2 class="text-center text-primary my-4 fw-bold">Admin Dashboard</h2>
+
+<h3 class="text-secondary fw-bold">Users</h3>
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered shadow-sm rounded">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="text-center align-middle">
+            @foreach (var user in Model.Users)
+            {
+                <tr class="transition">
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <span class="badge px-3 py-2 fw-bold @(user.IsBlocked ? "bg-danger" : "bg-success")">
+                            @(user.IsBlocked ? "Blocked" : "Active")
+                        </span>
+                    </td>
+                    <td>
+                        <a asp-action="ToggleUserStatus" asp-route-id="@user.Id" class="btn btn-warning btn-sm px-3 shadow-sm transition">
+                            <i class="bi bi-person-x"></i> @(user.IsBlocked ? "Unblock" : "Block")
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-secondary fw-bold">Accounts</h3>
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered shadow-sm rounded">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>Account Number</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody class="text-center align-middle">
+            @foreach (var account in Model.Accounts)
+            {
+                <tr class="transition">
+                    <td>@account.AccountNumber</td>
+                    <td class="fw-bold text-success">$@account.Balance.ToString("N2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-secondary fw-bold">Recent Transactions</h3>
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered shadow-sm rounded">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>Date</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody class="text-center align-middle">
+            @foreach (var transaction in Model.Transactions)
+            {
+                <tr class="transition">
+                    <td>@transaction.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@transaction.BankAccount.AccountNumber</td>
+                    <td>@(transaction.ToAccount != null ? transaction.ToAccount.AccountNumber : "N/A")</td>
+                    <td class="fw-bold text-success">$@transaction.Amount.ToString("N2")</td>
+                    <td>
+                        <span class="badge px-3 py-2 fw-bold @(transaction.Status == "Pending" ? "bg-warning text-dark" : "bg-success")">
+                            @transaction.Status
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.1);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .transition {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn {
+        border-radius: 6px;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .badge {
+        font-size: 0.85rem;
+        border-radius: 5px;
+    }
+</style>

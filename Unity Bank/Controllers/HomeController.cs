@@ -24,8 +24,20 @@ public class HomeController : Controller
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    //public IActionResult Error()
+    //{
+    //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    //}
     public IActionResult Error()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        var errorMessage = TempData["Error"] as string ?? "An unexpected error occurred."; // ? Ensure a default message
+        var errorModel = new ErrorViewModel
+        {
+            Message = errorMessage,
+            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier // ? Keep the RequestId
+        };
+        return View(errorModel);
     }
+
+
 }

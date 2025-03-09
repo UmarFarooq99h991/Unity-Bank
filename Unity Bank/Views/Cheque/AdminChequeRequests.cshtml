@@ -1,0 +1,155 @@
+﻿@* @model List<Unity_Bank.Models.ChequeRequest> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Manage Cheque Requests"; *@
+@* } *@
+
+@* <h2>Manage Cheque Requests</h2> *@
+
+@* @if (!Model.Any()) *@
+@* { *@
+@*     <div class="alert alert-info">No pending cheque requests.</div> *@
+@* } *@
+@* else *@
+@* { *@
+@*     <table class="table table-bordered"> *@
+@*         <thead class="thead-dark"> *@
+@*             <tr> *@
+@*                 <th>#</th> *@
+@*                 <th>Account Number</th> *@
+@*                 <th>Request Type</th> *@
+@*                 <th>Request Date</th> *@
+@*                 <th>Status</th> *@
+@*                 <th>Action</th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody> *@
+@*             @foreach (var request in Model) *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td>@request.RequestId</td> *@
+@*                     <td>@request.BankAccount.AccountNumber</td> *@
+@*                     <td>@request.RequestType</td> *@
+@*                     <td>@request.RequestDate.ToString("dd-MM-yyyy")</td> *@
+@*                     <td> *@
+@*                         @if (request.IsProcessed) *@
+@*                         { *@
+@*                             <span class="badge bg-success">Processed</span> *@
+@*                         } *@
+@*                         else *@
+@*                         { *@
+@*                             <span class="badge bg-warning text-dark">Pending</span> *@
+@*                         } *@
+@*                     </td> *@
+@*                     <td> *@
+@*                         @if (!request.IsProcessed) *@
+@*                         { *@
+@*                             <form asp-action="ApproveRequest" method="post" style="display:inline;"> *@
+@*                                 <input type="hidden" name="requestId" value="@request.RequestId" /> *@
+@*                                 <button type="submit" class="btn btn-success btn-sm">Approve</button> *@
+@*                             </form> *@
+@*                             <form asp-action="RejectRequest" method="post" style="display:inline;"> *@
+@*                                 <input type="hidden" name="requestId" value="@request.RequestId" /> *@
+@*                                 <button type="submit" class="btn btn-danger btn-sm">Reject</button> *@
+@*                             </form> *@
+@*                         } *@
+@*                     </td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*     </table> *@
+@* } *@
+@model List<Unity_Bank.Models.ChequeRequest>
+
+@{
+    ViewData["Title"] = "Manage Cheque Requests";
+}
+
+<h2 class="text-center text-primary my-4 fw-bold">Manage Cheque Requests</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center fw-bold shadow-sm">No pending cheque requests.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered shadow-sm rounded">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>#</th>
+                    <th>Account Number</th>
+                    <th>Request Type</th>
+                    <th>Request Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="text-center align-middle">
+                @foreach (var request in Model)
+                {
+                    <tr class="transition">
+                        <td class="fw-bold">@request.RequestId</td>
+                        <td>@request.BankAccount.AccountNumber</td>
+                        <td>
+                            <span class="badge bg-info text-dark px-3 py-2">@request.RequestType</span>
+                        </td>
+                        <td>@request.RequestDate.ToString("dd-MM-yyyy")</td>
+                        <td>
+                            <span class="badge @(request.IsProcessed ? "bg-success" : "bg-warning text-dark") px-3 py-2 fw-bold">
+                                @(request.IsProcessed ? "Processed" : "Pending")
+                            </span>
+                        </td>
+                        <td>
+                            @if (!request.IsProcessed)
+                            {
+                                <div class="d-flex justify-content-center gap-2">
+                                    <form asp-action="ApproveRequest" method="post">
+                                        <input type="hidden" name="requestId" value="@request.RequestId" />
+                                        <button type="submit" class="btn btn-success btn-sm px-3 shadow-sm">
+                                            <i class="bi bi-check-circle"></i> Approve
+                                        </button>
+                                    </form>
+                                    <form asp-action="RejectRequest" method="post">
+                                        <input type="hidden" name="requestId" value="@request.RequestId" />
+                                        <button type="submit" class="btn btn-danger btn-sm px-3 shadow-sm">
+                                            <i class="bi bi-x-circle"></i> Reject
+                                        </button>
+                                    </form>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<style>
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.1);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .transition {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .badge {
+        font-size: 1rem;
+    }
+
+    .btn {
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+</style>
